@@ -79,7 +79,7 @@
 // console.log(y === window.y);
 // console.log(z === window.z);
 
-console.log(this);
+// console.log(this);
 
 // const calcAge = function (birthYear) {
 //   console.log(2037 - birthYear);
@@ -87,27 +87,76 @@ console.log(this);
 // };
 // calcAge(1991);
 
-const calcAgeArrow = birthYear => {
-  console.log(2037 - birthYear);
-  // console.log(this);
+// const calcAgeArrow = birthYear => {
+//   console.log(2037 - birthYear);
+// console.log(this);
+// };
+// calcAgeArrow(1980);
+
+// const jonas = {
+//   year: 1991,
+//   calAge: function () {
+//     console.log(this);
+//     console.log(2037 - this.year);
+//   },
+// };
+// jonas.calAge();
+
+// const matilda = {
+//   year: 2017,
+// };
+
+// matilda.calAge = jonas.calAge;
+// matilda.calAge();
+
+// const f = jonas.calAge;
+// f();
+
+// var firstName = 'Matilda';
+
+// const jonas = {
+//   firstName: 'Jonas',
+//   year: 1991,
+//   calAge: function () {
+// console.log(this);
+// console.log(2037 - this.year);
+//   Solution 1
+//   const self = this; //self or that
+//   const isMillenial = function () {
+//     console.log(self);
+//     console.log(self.year >= 1981 && self.year <= 1996);
+//     // console.log(this.year >= 1981 && this.year <= 1996);
+//   };
+//   isMillenial();
+// },
+
+// Solution 2
+// const isMillenial = () => {
+//   console.log(this);
+//   console.log(this.year >= 1981 && this.year <= 1996);
+// console.log(this.year >= 1981 && this.year <= 1996);
+//     };
+//     isMillenial();
+//   },
+
+//   greet: () => {
+//     console.log(this);
+//     console.log(`Hey ${this.firstName}`);
+//   },
+// };
+// jonas.greet();
+// jonas.calAge();
+
+//arguments keyword
+const addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
 };
-calcAgeArrow(1980);
+addExpr(2, 5);
+addExpr(2, 5, 8, 12);
 
-const jonas = {
-  year: 1991,
-  calAge: function () {
-    console.log(this);
-    console.log(2037 - this.year);
-  },
+var addArrow = (a, b) => {
+  console.log(arguments);
+  return a + b;
 };
-jonas.calAge();
-
-const matilda = {
-  year: 2017,
-};
-
-matilda.calAge = jonas.calAge;
-matilda.calAge();
-
-const f = jonas.calAge;
-f();
+addArrow(2, 5, 8);
