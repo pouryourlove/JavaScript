@@ -75,81 +75,138 @@
 
 // greet('Hello')('Juyeon');
 
-const lufthansa = {
-  airline: 'Lufthansa',
-  iataCode: 'LH',
-  bookings: [],
-  book(flightNum, name) {
-    console.log(
-      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
-    );
-    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
-  },
-};
+// const lufthansa = {
+//   airline: 'Lufthansa',
+//   iataCode: 'LH',
+//   bookings: [],
+//   book(flightNum, name) {
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+//     );
+//     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+//   },
+// };
 
-lufthansa.book(239, 'Juyeon Lee');
-lufthansa.book(635, 'Maisy Dodd');
+// lufthansa.book(239, 'Juyeon Lee');
+// lufthansa.book(635, 'Maisy Dodd');
+// // console.log(lufthansa);
+
+// const eurowings = {
+//   airline: 'Eurowings',
+//   iataCode: 'EW',
+//   bookings: [],
+// };
+
+// const book = lufthansa.book;
+
+// // //Does NOT work
+// // // book(23, 'Juyeon Lee');
+
+// //Call method
+// book.call(eurowings, 23, 'Stephanie');
+
+// book.call(lufthansa, 239, 'Gaelle lee');
 // console.log(lufthansa);
 
-const eurowings = {
-  airline: 'Eurowings',
-  iataCode: 'EW',
-  bookings: [],
+// const swiss = {
+//   airline: 'Swiss Air Lines',
+//   iataCode: 'LX',
+//   bookings: [],
+// };
+
+// book.call(swiss, 583, 'Jacob cooper');
+// console.log(swiss);
+
+// //Apply method
+// const flightData = [583, 'George Cooper'];
+// book.apply(swiss, flightData);
+// console.log(swiss);
+
+// book.call(swiss, ...flightData);
+
+// //Bind method
+
+// const bookEW = book.bind(eurowings);
+// const bookLH = book.bind(lufthansa);
+// const bookLX = book.bind(swiss);
+// bookEW(23, 'Zzong Lee');
+
+// const bookEW23 = book.bind(eurowings, 23);
+// bookEW23('Juyeon Lee');
+// bookEW23('Maisy dodd');
+
+// //With Event Listners
+// lufthansa.planes = 300;
+// lufthansa.buyPlane = function () {
+//   console.log(this);
+
+//   this.planes++;
+//   console.log(this.planes);
+// };
+
+// document
+//   .querySelector('.buy')
+//   .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+// // Partial application
+// const addTax = (rate, value) => value + value * rate;
+// console.log(addTax(0.1, 200));
+
+// const addVat = addTax.bind(null);
+
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
 };
 
-const book = lufthansa.book;
+const booker = secureBooking();
 
-// //Does NOT work
-// // book(23, 'Juyeon Lee');
+booker();
+booker();
+booker();
 
-//Call method
-book.call(eurowings, 23, 'Stephanie');
+console.dir(booker);
 
-book.call(lufthansa, 239, 'Gaelle lee');
-console.log(lufthansa);
+// Example 1
 
-const swiss = {
-  airline: 'Swiss Air Lines',
-  iataCode: 'LX',
-  bookings: [],
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
 };
 
-book.call(swiss, 583, 'Jacob cooper');
-console.log(swiss);
-
-//Apply method
-const flightData = [583, 'George Cooper'];
-book.apply(swiss, flightData);
-console.log(swiss);
-
-book.call(swiss, ...flightData);
-
-//Bind method
-
-const bookEW = book.bind(eurowings);
-const bookLH = book.bind(lufthansa);
-const bookLX = book.bind(swiss);
-bookEW(23, 'Zzong Lee');
-
-const bookEW23 = book.bind(eurowings, 23);
-bookEW23('Juyeon Lee');
-bookEW23('Maisy dodd');
-
-//With Event Listners
-lufthansa.planes = 300;
-lufthansa.buyPlane = function () {
-  console.log(this);
-
-  this.planes++;
-  console.log(this.planes);
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
 };
 
-document
-  .querySelector('.buy')
-  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+g();
+f();
 
-// Partial application
-const addTax = (rate, value) => value + value * rate;
-console.log(addTax(0.1, 200));
+//Re-assigning f function
+h();
+f();
 
-const addVat = addTax.bind(null);
+//Example 2
+
+const boardPassenger = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+boardPassenger(180, 3);
