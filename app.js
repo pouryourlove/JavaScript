@@ -68,22 +68,40 @@
 
 // 1) functions as arguments
 
-function callTwice(func) {
-  func();
-  func();
-}
+// function callTwice(func) {
+//   func();
+//   func();
+// }
 
-function callTenTimes(f) {
-  for (let i = 0; i < 10; i++) {
-    f();
-  }
-}
+// function callTenTimes(f) {
+//   for (let i = 0; i < 10; i++) {
+//     f();
+//   }
+// }
 
-function rollDie() {
-  const roll = Math.floor(Math.random() * 6) + 1;
-  console.log(roll);
-}
+// function rollDie() {
+//   const roll = Math.floor(Math.random() * 6) + 1;
+//   console.log(roll);
+// }
 
-callTwice(rollDie);
+// callTwice(rollDie);
 
 // 2) returning functions
+
+function makeBetweenFunc(min, max) {
+  return function (num) {
+    return num >= min && num <= max;
+  };
+}
+
+// Method
+
+const myMath = {
+  PI: 3.14159,
+  square: function (num) {
+    return num * num;
+  },
+  cube: function (num) {
+    return num ** 3;
+  },
+};
