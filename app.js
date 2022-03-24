@@ -88,20 +88,39 @@
 
 // 2) returning functions
 
-function makeBetweenFunc(min, max) {
-  return function (num) {
-    return num >= min && num <= max;
-  };
-}
+// function makeBetweenFunc(min, max) {
+//   return function (num) {
+//     return num >= min && num <= max;
+//   };
+// }
 
 // Method
 
+// const myMath = {
+//   PI: 3.14159,
+//   square: function (num) {
+//     return num * num;
+//   },
+//   cube: function (num) {
+//     return num ** 3;
+//   },
+// };
+
 const myMath = {
   PI: 3.14159,
-  square: function (num) {
+  square(num) {
     return num * num;
   },
-  cube: function (num) {
+  cube(num) {
     return num ** 3;
+  },
+};
+
+const dog = {
+  name: "zzong",
+  color: "white and brown",
+  breed: "mixed",
+  woof() {
+    console.log("woof woof woof");
   },
 };
