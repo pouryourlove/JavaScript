@@ -54,3 +54,23 @@ console.log(jonas.hasOwnProperty('firstName'));
 console.log(jonas.hasOwnProperty('species'));
 
 //Second one says false because this property is not really inside of the jonas object. it only has access to it because of prototype of a person
+
+// Object.prototype (top of prototype chain)
+
+console.log(jonas.__proto__);
+console.log(jonas.__proto__.__proto__);
+console.log(jonas.__proto__.__proto__.__proto__);
+
+const arr = [3, 6, 6, 5, 6, 9, 9]; //new Array === []
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+
+console.log(arr.__proto__.__proto__);
+
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+
+console.log(arr.unique());
+
+const h1 = document.querySelector('h1');
