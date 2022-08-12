@@ -15,8 +15,8 @@ var memberObject = {
 
 console.group('object loop');
 
-for (member in memberObject) {
-  console.log(member, memberObject[member]);
+for (var name in memberObject) {
+  console.log(name, memberObject[name]);
 }
 
 console.groupEnd('object loop');
