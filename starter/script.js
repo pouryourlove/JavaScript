@@ -73,45 +73,61 @@
 // const f = jonas.calcAge;
 // f();
 
-const jonas = {
-  firstName: 'Jonas',
-  year: 1991,
-  calcAge: function () {
-    console.log(this); //jonas
-    console.log(2037 - this.year);
+// const jonas = {
+//   firstName: 'Jonas',
+//   year: 1991,
+//   calcAge: function () {
+//     console.log(this); //jonas
+//     console.log(2037 - this.year);
 
-    //Solution 1
-    // const self = this; //self or that
-    // const isMillenial = function () {
-    //   console.log(self.year >= 1981 && self.year <= 1996);
-    //   // console.log(this.year >= 1981 && this.year <= 1996);
-    // };
-    // isMillenial();
+//     //Solution 1
+//     // const self = this; //self or that
+//     // const isMillenial = function () {
+//     //   console.log(self.year >= 1981 && self.year <= 1996);
+//     //   // console.log(this.year >= 1981 && this.year <= 1996);
+//     // };
+//     // isMillenial();
 
-    // Soulution 2
-    const isMillenial = () => {
-      console.log(this);
-      console.log(this.year >= 1981 && this.year <= 1996);
-    };
-    isMillenial();
-  },
+//     // Soulution 2
+//     const isMillenial = () => {
+//       console.log(this);
+//       console.log(this.year >= 1981 && this.year <= 1996);
+//     };
+//     isMillenial();
+//   },
 
-  greet: () => console.log(`Hey ${this.firstName}`),
+//   greet: () => console.log(`Hey ${this.firstName}`),
+// };
+
+// jonas.greet();
+// jonas.calcAge();
+
+// //argument keyword
+// const addExpr = function (a, b) {
+//   console.log(arguments);
+//   return a + b;
+// };
+// addExpr(2, 5);
+// addExpr(2, 5, 8, 12);
+
+// var addArrow = (a, b) => {
+//   console.log(arguments); // Uncaught ReferenceError: arguments is not defined
+//   return a + b;
+// };
+// addArrow(2, 5, 8);
+
+let age = 30;
+let oldAge = age;
+age = 31;
+console.log(age); //31
+console.log(oldAge); //30
+
+const me = {
+  name: 'Juyeon',
+  age: 30,
 };
 
-jonas.greet();
-jonas.calcAge();
-
-//argument keyword
-const addExpr = function (a, b) {
-  console.log(arguments);
-  return a + b;
-};
-addExpr(2, 5);
-addExpr(2, 5, 8, 12);
-
-var addArrow = (a, b) => {
-  console.log(arguments); // Uncaught ReferenceError: arguments is not defined
-  return a + b;
-};
-addArrow(2, 5, 8);
+const friend = me; //This is how we copy the object
+friend.age = 27;
+console.log('Friend', friend); //{name: 'Juyeon', age: 27}
+console.log('Me', me); // {name: 'Juyeon', age: 27}
