@@ -116,18 +116,62 @@
 // };
 // addArrow(2, 5, 8);
 
-let age = 30;
-let oldAge = age;
-age = 31;
-console.log(age); //31
-console.log(oldAge); //30
+// let age = 30;
+// let oldAge = age;
+// age = 31;
+// console.log(age); //31
+// console.log(oldAge); //30
 
-const me = {
-  name: 'Juyeon',
+// const me = {
+//   name: 'Juyeon',
+//   age: 30,
+// };
+
+// const friend = me; //This is how we copy the object
+// friend.age = 27;
+// console.log('Friend', friend); //{name: 'Juyeon', age: 27}
+// console.log('Me', me); // {name: 'Juyeon', age: 27}
+
+//primitive types
+// let lastName = 'Lee';
+// let oldLastName = lastName;
+// lastName = 'Dodd';
+// console.log(lastName, oldLastName); //Dodd,Lee
+
+// //reference types
+// const juyeon = {
+//   firstName: 'Juyeon',
+//   lastName: 'Lee',
+//   age: 30,
+// };
+// const marriedJuyeon = juyeon;
+// marriedJuyeon.lastName = 'Dodd';
+// console.log('Before marriage:', juyeon); //{firstName: 'Juyeon', lastName: 'Dodd', age: 30}
+// console.log('After marriage:', marriedJuyeon); //{firstName: 'Juyeon', lastName: 'Dodd', age: 30}
+
+// marriedJuyeon = {};
+// //script.js:150 Uncaught TypeError: Assignment to constant variable.
+
+//copying objects
+const juyeon2 = {
+  firstName: 'Juyeon',
+  lastName: 'Lee',
   age: 30,
+  family: ['Sangho', 'Doeksil'],
 };
 
-const friend = me; //This is how we copy the object
-friend.age = 27;
-console.log('Friend', friend); //{name: 'Juyeon', age: 27}
-console.log('Me', me); // {name: 'Juyeon', age: 27}
+const juyeonCopy = Object.assign({}, juyeon2);
+juyeonCopy.lastName = 'Dodd';
+
+juyeonCopy.family.push('Maisy');
+juyeonCopy.family.push('Zzong');
+
+console.log('Before marriage:', juyeon2);
+console.log('After marriage:', juyeonCopy);
+
+// console.log('Before marriage:', juyeon2);
+// //{firstName: 'Juyeon', lastName: 'Lee', age: 30}
+// console.log('After marriage:', juyeonCopy);
+// //{firstName: 'Juyeon', lastName: 'Dodd', age: 30}
+
+//
