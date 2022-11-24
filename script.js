@@ -5,9 +5,9 @@ const Person = function (firstName, birthYear) {
   this.birthYear = birthYear;
 
   //Never do this
-  this.calAge = function () {
-    console.log(2037 - this.birthYear);
-  };
+  //   this.calAge = function () {
+  //     console.log(2037 - this.birthYear);
+  //   };
 };
 
 const juyeon = new Person('Juyeon', 1992);
@@ -32,5 +32,29 @@ console.log(juyeon);
 
 juyeon.calAge(); //46
 
-// Person.prototype.speicies = 'homo sapiens';
-// console.log(juyeon.speicies); //homo sapiens
+Person.prototype.speicies = 'homo sapiens';
+console.log(juyeon.speicies); //homo sapiens
+
+console.log(juyeon.hasOwnProperty('firstName'));
+console.log(juyeon.hasOwnProperty('species'));
+
+console.log(juyeon.__proto__);
+//Person.prototype
+console.log(juyeon.__proto__.__proto__);
+//Object.prototype(top of prototype chain)
+console.log(juyeon.__proto__.__proto__.__proto__); //null
+
+console.dir(Person.prototype.constructor);
+//constructor property points back at person
+
+const arr = [1, 2, 2, 4, 4, 9];
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+//the prototype property of the constructor is gonna be the prototype of all the objects created by that constructor.
+console.log(arr.__proto__.__proto__);
+//=>Object.prototype
+
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+console.log(arr.unique());
