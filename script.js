@@ -118,41 +118,99 @@
 // maisy.calcAge();
 
 //Linking prototypes
-const Person = function (firstName, birthYear) {
-  //Instance Properties
-  this.firstName = firstName;
-  this.birthYear = birthYear;
-  console.log(this);
-};
+// const Person = function (firstName, birthYear) {
+//   //Instance Properties
+//   this.firstName = firstName;
+//   this.birthYear = birthYear;
+//   console.log(this);
+// };
 
-Person.prototype.calcAge = function () {
-  console.log(2037 - this.birthYear);
-};
+// Person.prototype.calcAge = function () {
+//   console.log(2037 - this.birthYear);
+// };
 
-const Student = function (firstName, birthYear, course) {
-  Person.call(this, firstName, birthYear);
-  this.course = course;
-};
-//usually child one has additional property which is course in this case
+// const Student = function (firstName, birthYear, course) {
+//   Person.call(this, firstName, birthYear);
+//   this.course = course;
+// };
+// //usually child one has additional property which is course in this case
 
-//Linking prototype
-Student.prototype = Object.create(Person.prototype);
+// //Linking prototype
+// Student.prototype = Object.create(Person.prototype);
 
-Student.prototype.introduce = function () {
-  console.log(`My name is ${this.firstName} and I study ${this.course}`);
-};
+// Student.prototype.introduce = function () {
+//   console.log(`My name is ${this.firstName} and I study ${this.course}`);
+// };
 
-const zzong = new Student('Zzong', 2012, 'Computre Science');
-console.log(zzong);
-zzong.introduce();
-zzong.calcAge();
+// const zzong = new Student('Zzong', 2012, 'Computre Science');
+// console.log(zzong);
+// zzong.introduce();
+// zzong.calcAge();
 
-console.log(zzong.__proto__);
-console.log(zzong.__proto__.__proto__);
-console.log(zzong instanceof Object);
+// console.log(zzong.__proto__);
+// console.log(zzong.__proto__.__proto__);
+// console.log(zzong instanceof Object);
 
-console.log(zzong instanceof Student);
-console.log(zzong instanceof Person);
+// console.log(zzong instanceof Student);
+// console.log(zzong instanceof Person);
 
-Student.prototype.constructor = Student;
-console.dir(Student.prototype.constructor);
+// Student.prototype.constructor = Student;
+// console.dir(Student.prototype.constructor);
+
+class PersonCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  // Instance methods
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  }
+
+  greet() {
+    console.log(`Hey ${this.fullName}`);
+  }
+
+  get age() {
+    return 2037 - this.birthYear;
+  }
+
+  set fullName(name) {
+    if (name.includes(' ')) this._fullName = name;
+    else alert(`${name} is not a full name!`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  // Static method
+  static hey() {
+    console.log('Hey there 👋');
+  }
+}
+
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    // Always needs to happen first!
+    super(fullName, birthYear); // responsible for creating this keyword
+    this.course = course;
+  }
+  introduce() {
+    console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  }
+  calcAge() {
+    console.log(
+      `I'm ${
+        2037 - this.birthYear
+      } years old, but as a student I feel more like ${
+        2037 - this.birthYear + 10
+      }`
+    );
+  }
+}
+
+const julia = new StudentCl('Julia Lee', 2012, 'computer science');
+julia.introduce();
+julia.calcAge();
