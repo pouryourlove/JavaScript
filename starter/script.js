@@ -147,13 +147,58 @@
 // });
 // // getCountryData('dafdsfsd');
 
-console.log('Test start');
-setTimeout(() => console.log('0 sec timer'), 0);
-Promise.resolve('Resolved promise 1').then(res => console.log(res));
+// console.log('Test start');
+// setTimeout(() => console.log('0 sec timer'), 0);
+// Promise.resolve('Resolved promise 1').then(res => console.log(res));
 
-Promise.resolve('Resolved promise 2').then(res => {
-  for (let i = 0; i < 1000; i++) {}
-  console.log(res);
+// Promise.resolve('Resolved promise 2').then(res => {
+//   for (let i = 0; i < 1000; i++) {}
+//   console.log(res);
+// });
+
+// console.log('Test end');
+
+const lotteryPromise = new Promise(function (resolve, reject) {
+  console.log('Lottery draw is happening!');
+
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      resolve('You WIN!');
+    } else {
+      reject(new Error('You lost your money'));
+    }
+  }, 2000);
 });
 
-console.log('Test end');
+lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+
+//Promisifying setTimeout
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+//timer doesnt fail so i don't need to write reject
+
+wait(1)
+  .then(() => {
+    console.log('1 second passed');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('2 second passed');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('3 second passed');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('4 second passed');
+    return wait(1);
+  })
+
+  .then(() => console.log('5 second passed'));
+
+Promise.resolve('abc').then(x => console.log(x));
+Promise.reject(new Error('abc')).catch(x => console.error(x));
