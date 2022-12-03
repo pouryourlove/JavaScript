@@ -1,32 +1,32 @@
 'use strict';
 
-// const btn = document.querySelector('.btn-country');
-// const countriesContainer = document.querySelector('.countries');
+const btn = document.querySelector('.btn-country');
+const countriesContainer = document.querySelector('.countries');
 
 // ///////////////////////////////////////
 // // https://restcountries.com/v2/
 
-// const renderCountry = function (data, className = '') {
-//   const html = ` <article class="country ${className}">
-//   <img class="country__img" src="${data.flag}" />
-//   <div class="country__data">
-//     <h3 class="country__name">${data.name}</h3>
-//     <h4 class="country__region">${data.region}</h4>
-//     <p class="country__row"><span>👫</span>${(
-//       +data.population / 1000000
-//     ).toFixed(1)} people</p>
-//     <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
-//     <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
-//   </div>
-// </article>`;
-//   countriesContainer.insertAdjacentHTML('beforeend', html);
-//   // countriesContainer.style.opacity = 1;
-// };
+const renderCountry = function (data, className = '') {
+  const html = ` <article class="country ${className}">
+  <img class="country__img" src="${data.flag}" />
+  <div class="country__data">
+    <h3 class="country__name">${data.name}</h3>
+    <h4 class="country__region">${data.region}</h4>
+    <p class="country__row"><span>👫</span>${(
+      +data.population / 1000000
+    ).toFixed(1)} people</p>
+    <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+    <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
+  </div>
+</article>`;
+  countriesContainer.insertAdjacentHTML('beforeend', html);
+  countriesContainer.style.opacity = 1;
+};
 
-// const renderError = function (msg) {
-//   countriesContainer.insertAdjacentText('beforeend', msg);
-//   // countriesContainer.style.opacity = 1;
-// };
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText('beforeend', msg);
+  countriesContainer.style.opacity = 1;
+};
 
 // // const getCountryAndNeighbour = function (country) {
 // //   //AJAX call country 1
@@ -158,47 +158,96 @@
 
 // console.log('Test end');
 
-const lotteryPromise = new Promise(function (resolve, reject) {
-  console.log('Lottery draw is happening!');
+// const lotteryPromise = new Promise(function (resolve, reject) {
+//   console.log('Lottery draw is happening!');
 
-  setTimeout(function () {
-    if (Math.random() >= 0.5) {
-      resolve('You WIN!');
-    } else {
-      reject(new Error('You lost your money'));
-    }
-  }, 2000);
-});
+//   setTimeout(function () {
+//     if (Math.random() >= 0.5) {
+//       resolve('You WIN!');
+//     } else {
+//       reject(new Error('You lost your money'));
+//     }
+//   }, 2000);
+// });
 
-lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+// lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
 
-//Promisifying setTimeout
-const wait = function (seconds) {
-  return new Promise(function (resolve) {
-    setTimeout(resolve, seconds * 1000);
+// //Promisifying setTimeout
+// const wait = function (seconds) {
+//   return new Promise(function (resolve) {
+//     setTimeout(resolve, seconds * 1000);
+//   });
+// };
+// //timer doesnt fail so i don't need to write reject
+
+// wait(1)
+//   .then(() => {
+//     console.log('1 second passed');
+//     return wait(1);
+//   })
+//   .then(() => {
+//     console.log('2 second passed');
+//     return wait(1);
+//   })
+//   .then(() => {
+//     console.log('3 second passed');
+//     return wait(1);
+//   })
+//   .then(() => {
+//     console.log('4 second passed');
+//     return wait(1);
+//   })
+
+//   .then(() => console.log('5 second passed'));
+
+// Promise.resolve('abc').then(x => console.log(x));
+// Promise.reject(new Error('abc')).catch(x => console.error(x));
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
   });
 };
-//timer doesnt fail so i don't need to write reject
 
-wait(1)
-  .then(() => {
-    console.log('1 second passed');
-    return wait(1);
-  })
-  .then(() => {
-    console.log('2 second passed');
-    return wait(1);
-  })
-  .then(() => {
-    console.log('3 second passed');
-    return wait(1);
-  })
-  .then(() => {
-    console.log('4 second passed');
-    return wait(1);
-  })
+const whereAmI = async function () {
+  try {
+    //Geolocation
+    const pos = await getPosition();
 
-  .then(() => console.log('5 second passed'));
+    const { latitude: lat, longtitude: lng } = pos.coords;
+    //Reverse geocoding
+    const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    if (!resGeo.ok) throw new Error(`Problem getting location data`);
+    const dataGeo = await resGeo.json();
 
-Promise.resolve('abc').then(x => console.log(x));
-Promise.reject(new Error('abc')).catch(x => console.error(x));
+    //Country data
+    // fetch(`https://restcountries.com/v2/name/${country}`).then(res =>
+    //   console.log(res)
+    // );
+    const res = await fetch(
+      `https://restcountries.com/v2/name/${dataGeo.country}`
+    );
+    if (!res.ok) throw new Error(`Problem getting location data`);
+
+    const data = await res.json();
+
+    renderCountry(data[0]);
+
+    return `You are in ${dataGeo.city}, ${dataGeo.country}`;
+  } catch (err) {
+    console.error(`${err}`);
+    renderError(`something went wrong! ${err.message}`);
+  }
+};
+
+console.log('1: Will get location');
+whereAmI().then(city => console.log(city));
+console.log('2:Finished getting location');
+
+// try {
+//   let y = 1;
+//   const x = 2;
+//   x = 3;
+// } catch (err) {
+//   alert(err.message);
+// }
