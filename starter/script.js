@@ -75,36 +75,51 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
-let arr = ['a', 'b', 'c', 'd', 'e'];
+// let arr = ['a', 'b', 'c', 'd', 'e'];
 
-// SLICE
-//With the slice method, we can extract part of any array without changing the original array
-console.log(arr.slice(2)); //['c','d','e']
-console.log(arr.slice(2, 4)); //['c','d'] end parameter is not included in the output
-console.log(arr.slice(-2)); //['d', 'e']
-console.log(arr.slice(-1)); //['e']
-console.log(arr.slice(1, -2)); //['b','c']
-console.log(arr.slice()); //['a', 'b', 'c', 'd', 'e'] shallow copy
-console.log([...arr]); //['a', 'b', 'c', 'd', 'e'] shallow copy
+// // SLICE
+// //With the slice method, we can extract part of any array without changing the original array
+// console.log(arr.slice(2)); //['c','d','e']
+// console.log(arr.slice(2, 4)); //['c','d'] end parameter is not included in the output
+// console.log(arr.slice(-2)); //['d', 'e']
+// console.log(arr.slice(-1)); //['e']
+// console.log(arr.slice(1, -2)); //['b','c']
+// console.log(arr.slice()); //['a', 'b', 'c', 'd', 'e'] shallow copy
+// console.log([...arr]); //['a', 'b', 'c', 'd', 'e'] shallow copy
 
-//SPLICE
-//it is kind of same with slice but the difference is that it mutates the original array.
-// console.log(arr.splice(2)); //['a', 'b']
-arr.splice(-1); //delete the last element of the array
-console.log(arr);
-arr.splice(1, 2); //position 1 and delete the 2 elements including the position 1
-console.log(arr); //['a', 'b'] you can see the orginal array changed. //['a', 'b', 'c', 'd']
+// //SPLICE
+// //it is kind of same with slice but the difference is that it mutates the original array.
+// // console.log(arr.splice(2)); //['a', 'b']
+// arr.splice(-1); //delete the last element of the array
+// console.log(arr);
+// arr.splice(1, 2); //position 1 and delete the 2 elements including the position 1
+// console.log(arr); //['a', 'b'] you can see the orginal array changed. //['a', 'b', 'c', 'd']
 
-//REVERSE
-arr = ['a', 'b', 'c', 'd', 'e'];
-const arr2 = ['j', 'i', 'h', 'g', 'f'];
-console.log(arr2.reverse()); //reverse actually mutate the original array
-console.log(arr2);
+// //REVERSE
+// arr = ['a', 'b', 'c', 'd', 'e'];
+// const arr2 = ['j', 'i', 'h', 'g', 'f'];
+// console.log(arr2.reverse()); //reverse actually mutate the original array
+// console.log(arr2);
 
-// CONCAT
-const letters = arr.concat(arr2);
-console.log(letters);
-console.log([...arr, ...arr2]);
+// // CONCAT
+// const letters = arr.concat(arr2);
+// console.log(letters);
+// console.log([...arr, ...arr2]);
 
-// JOIN
-console.log(letters.join(' - '));
+// // JOIN
+// console.log(letters.join(' - '));
+
+const arr = [23, 11, 64];
+console.log(arr[0]);
+console.log(arr.at(0));
+
+// getting last array element
+console.log(arr[arr.length - 1]);
+console.log(arr.slice(-1)[0]);
+console.log(arr.at(-1));
+
+console.log('juyeon'.at(0));
+console.log('juyeon'.at(-1));
+
+//at method is perfect for getting the last element of the array
+//and if you want to do something called "method chaining"
