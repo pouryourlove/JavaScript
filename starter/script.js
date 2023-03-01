@@ -89,7 +89,6 @@ const createUsernames = function (accs) {
 };
 
 createUsernames(accounts);
-console.log(accounts);
 
 const user = 'Steven Thomas Williams'; // stw
 
@@ -213,3 +212,21 @@ const eurToUsd = 1.1;
 //     )}`
 // );
 // console.log(movementsDescriptions);
+
+const deposits = movements.filter(function (mov) {
+  return mov > 0;
+});
+console.log(movements);
+console.log(deposits);
+
+const depositFor = [];
+for (const mov of movements) if (mov > 0) depositFor.push(mov);
+console.log(depositFor);
+
+const withdrawal = movements.filter(mov => mov < 0);
+
+console.log(withdrawal);
+
+const withdrawalFor = [];
+for (const mov of movements) if (mov < 0) withdrawalFor.push(mov);
+console.log(withdrawalFor);
