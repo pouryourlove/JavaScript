@@ -180,7 +180,7 @@ calcdisplayBalance(account1.movements);
 //at method is perfect for getting the last element of the array
 //and if you want to do something called "method chaining"
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // for (const movement of movements) {
 // for (const [i, movement] of movements.entries()) {
@@ -262,36 +262,47 @@ const eurToUsd = 1.1;
 // for (const mov of movements) if (mov < 0) withdrawalFor.push(mov);
 // console.log(withdrawalFor);
 
-console.log(movements);
+// console.log(movements);
 
-//accumulator -> snowball
+// //accumulator -> snowball
 
-const balance = movements.reduce(function (acc, cur, i, arr) {
-  console.log(`Iteration ${i}: ${acc}`);
-  return acc + cur;
-}, 0);
-console.log(balance);
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+// console.log(balance);
 
-const balanceArrow = movements.reduce((acc, cur) => acc + cur, 0);
-console.log(balanceArrow);
+// const balanceArrow = movements.reduce((acc, cur) => acc + cur, 0);
+// console.log(balanceArrow);
 
-let balance2 = 0;
-for (let mov of movements) balance2 += mov;
-console.log(balance2);
+// let balance2 = 0;
+// for (let mov of movements) balance2 += mov;
+// console.log(balance2);
 
-//Maximum value
-const max = movements.reduce((acc, mov) => {
-  if (acc > mov) return acc;
-  else return mov;
-}, movements[0]);
+// //Maximum value
+// const max = movements.reduce((acc, mov) => {
+//   if (acc > mov) return acc;
+//   else return mov;
+// }, movements[0]);
 
-console.log(max);
+// console.log(max);
 
-const totalDepositsUSD = movements
-  .filter(mov => mov > 0)
-  .map((mov, i, arr) => {
-    // console.log(arr);
-    return mov * eurToUsd;
-  })
-  .reduce((acc, mov) => acc + mov, 0);
-console.log(totalDepositsUSD);
+// const totalDepositsUSD = movements
+//   .filter(mov => mov > 0)
+//   .map((mov, i, arr) => {
+//     // console.log(arr);
+//     return mov * eurToUsd;
+//   })
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(totalDepositsUSD);
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const firstWithdrawl = movements.find(mov => mov < 0);
+console.log(firstWithdrawl);
+
+//filter returns all the elements that match the condition while the find method only returns the first one
+//filter method returns new array while find only returns the element itself(not array)
+
+console.log(accounts);
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
