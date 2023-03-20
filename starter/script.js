@@ -143,6 +143,7 @@ btnLogin.addEventListener('click', function (e) {
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
     }`;
+
     containerApp.style.opacity = 100;
 
     //Clear input fields
@@ -176,6 +177,32 @@ btnTransfer.addEventListener('click', function (e) {
     updateUI(currentAccount);
   }
 });
+
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+    console.log(index);
+
+    //Delete account
+    accounts.splice(index, 1);
+
+    //Hide UI
+    containerApp.style.opacity = 0;
+  }
+  inputCloseUsername.value = inputClosePin.value = '';
+});
+
+//findIndex returns the index of the found element
+//findIndex method will return the index of the first element in the array that matchs this condition
+//it looks similar to indexOf but the big difference here is that with indexOf,we can only search for a value that is in the array but with findIndex we can create a complex condition like this one
+//it was added into javascript es6
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
