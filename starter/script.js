@@ -178,6 +178,22 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    //Add movement
+    currentAccount.movements.push(amount);
+
+    //Update UI
+    updateUI(currentAccount);
+
+    inputLoanAmount.value = '';
+  }
+});
+
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -377,7 +393,7 @@ const eurToUsd = 1.1;
 //   .reduce((acc, mov) => acc + mov, 0);
 // console.log(totalDepositsUSD);
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // const firstWithdrawl = movements.find(mov => mov < 0);
 // console.log(firstWithdrawl);
 
@@ -387,3 +403,31 @@ const eurToUsd = 1.1;
 // console.log(accounts);
 // const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 // console.log(account);
+
+console.log(movements);
+
+//EQUALITY
+console.log(movements.includes(-130));
+//includes method is used to check if an array includes a certain value
+//it can't test for a condition so some method appeared.
+//includes checks only for equality
+
+//SOME : CONDITION
+console.log(movements.some(mov => mov === -130));
+
+const anyDeposite = movements.some(mov => mov > 0);
+console.log(anyDeposite);
+
+const above = movements.some(mov => mov > 5000);
+console.log(above);
+
+//EVERY
+//every returns true only if all of the elements in the array satisfy the condition
+console.log(movements.every(mov => mov > 0));
+console.log(account4.movements.every(mov => mov > 0));
+
+//Separate callback
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
