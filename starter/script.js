@@ -200,12 +200,44 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(max);
 
 //PIPELINE
-const eurToUsd = 1.1;
-const totalDepositesUSD = movements
-  .filter(mov => mov > 0)
-  .map((mov, i, arr) => {
-    return mov * eurToUsd;
-  })
-  // .map(mov => mov * eurToUsd)
-  .reduce((acc, mov) => acc + mov, 0);
-console.log(totalDepositesUSD);
+// const eurToUsd = 1.1;
+// const totalDepositesUSD = movements
+//   .filter(mov => mov > 0)
+//   .map((mov, i, arr) => {
+//     return mov * eurToUsd;
+//   })
+//   // .map(mov => mov * eurToUsd)
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(totalDepositesUSD);
+
+//Strings
+const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+console.log(owners.sort()); //mutate the orginal array
+console.log(owners);
+
+// Numbers
+console.log(movements);
+console.log(movements.sort()); //sorting method does the sorting based on the string so it doesn't work on numbers
+
+// return < 0, A,B (keep order)
+// return >0 B,A (switch order)
+
+// Ascending
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (a < b) return -1;
+// });
+movements.sort((a, b) => a - b);
+
+console.log(movements);
+
+//Descending
+
+// movements.sort((a, b) => {
+//   if (a > b) return -1;
+//   if (a < b) return 1;
+// });
+
+movements.sort((a, b) => b - a);
+
+console.log(movements);
