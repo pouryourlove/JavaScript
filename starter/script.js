@@ -415,40 +415,40 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 // console.log(account);
 
-console.log(movements);
+// console.log(movements);
 
-//EQUALITY
-console.log(movements.includes(-130));
-//includes method is used to check if an array includes a certain value
-//it can't test for a condition so some method appeared.
-//includes checks only for equality
+// //EQUALITY
+// console.log(movements.includes(-130));
+// //includes method is used to check if an array includes a certain value
+// //it can't test for a condition so some method appeared.
+// //includes checks only for equality
 
-//SOME : CONDITION
-console.log(movements.some(mov => mov === -130));
+// //SOME : CONDITION
+// console.log(movements.some(mov => mov === -130));
 
-const anyDeposite = movements.some(mov => mov > 0);
-console.log(anyDeposite);
+// const anyDeposite = movements.some(mov => mov > 0);
+// console.log(anyDeposite);
 
-const above = movements.some(mov => mov > 5000);
-console.log(above);
+// const above = movements.some(mov => mov > 5000);
+// console.log(above);
 
-//EVERY
-//every returns true only if all of the elements in the array satisfy the condition
-console.log(movements.every(mov => mov > 0));
-console.log(account4.movements.every(mov => mov > 0));
+// //EVERY
+// //every returns true only if all of the elements in the array satisfy the condition
+// console.log(movements.every(mov => mov > 0));
+// console.log(account4.movements.every(mov => mov > 0));
 
-//Separate callback
-const deposit = mov => mov > 0;
-console.log(movements.some(deposit));
-console.log(movements.every(deposit));
-console.log(movements.filter(deposit));
+// //Separate callback
+// const deposit = mov => mov > 0;
+// console.log(movements.some(deposit));
+// console.log(movements.every(deposit));
+// console.log(movements.filter(deposit));
 
-const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
-console.log(arr.flat());
+// const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+// console.log(arr.flat());
 
-const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+// const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
 
-console.log(arrDeep.flat(2));
+// console.log(arrDeep.flat(2));
 
 // const accountMovements = accounts.map(acc => acc.movements);
 // console.log(accountMovements);
@@ -458,14 +458,45 @@ console.log(arrDeep.flat(2));
 // console.log(overallBalance);
 
 // flat
-const overallBalance = accounts
-  .map(acc => acc.movements)
-  .flat()
-  .reduce((acc, mov) => acc + mov, 0);
-console.log(overallBalance);
+// const overallBalance = accounts
+//   .map(acc => acc.movements)
+//   .flat()
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(overallBalance);
 
-// flatMap
-const overallBalance2 = accounts
-  .flatMap(acc => acc.movements) // it can work only depth 1
-  .reduce((acc, mov) => acc + mov, 0);
-console.log(overallBalance);
+// // flatMap
+// const overallBalance2 = accounts
+//   .flatMap(acc => acc.movements) // it can work only depth 1
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(overallBalance);
+
+const arr = [1, 2, 3, 4, 5, 6, 7];
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+//Empty arrays + fill method
+const x = new Array(7);
+console.log(x);
+// console.log(x.map(() => 5));
+
+x.fill(1, 3, 5);
+console.log(x);
+
+arr.fill(23, 2, 6);
+console.log(arr);
+
+//Array.from
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace('€', ''))
+  );
+  console.log(movementsUI);
+
+  const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+});
