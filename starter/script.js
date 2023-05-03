@@ -500,3 +500,21 @@ labelBalance.addEventListener('click', function () {
 
   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
 });
+
+//Array Method Practice
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(move => move > 0)
+  .reduce((sum, cur) => sum + cur, 0);
+console.log(bankDepositSum);
+
+const numDeposits1000 = accounts
+  .flatMap(acc => acc.movements)
+  // .reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0);
+  .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0);
+console.log(numDeposits1000);
+// Prefixed ++ operator
+let a = 10;
+console.log(++a);
+console.log(a);
+//it still returns the previous value so in this case we can use pre fixed
