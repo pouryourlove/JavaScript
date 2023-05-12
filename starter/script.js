@@ -397,3 +397,10 @@ console.log(huge + 'is REALLY big!!!');
 //Divisions
 console.log(11n / 3n);
 console.log(10 / 3);
+
+//Create a date
+const now = new Date();
+console.log(now);
+
+console.log(new Date('May 12 2023 23:58:20'));
+console.log(new Date('December 24, 2015'));
