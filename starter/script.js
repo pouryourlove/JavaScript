@@ -81,6 +81,19 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
+const formatMovementDate = function(date){
+  
+  const calcDayPassed = (date1, date2) => Math.abs(date2 - date1) / (1000 * 60 * 60 * 24)
+  const day = `${date.getDate()}`.padStart(2, 0);
+  const month = `${date.getMonth() + 1}`.padStart(2, 0);
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+
+  
+
+}
+
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
 
@@ -91,12 +104,8 @@ const displayMovements = function (acc, sort = false) {
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const date = new Date(acc.movementsDates[i]);
-
-    const day = `${date.getDate()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-
-    const displayDate = `${day}/${month}/${year}`;
+    const displayDate = formatMovementDate(date)
+   
 
     const html = `
       <div class="movements__row">
@@ -193,8 +202,8 @@ btnLogin.addEventListener('click', function (e) {
     const day = `${now.getDate()}`.padStart(2, 0);
     const month = `${now.getMonth() + 1}`.padStart(2, 0);
     const year = now.getFullYear();
-    const hour = now.getHours().padStart(2, 0);
-    const min = now.getMinutes().padStart(2, 0);
+    const hour = `${now.getHours()}`.padStart(2, 0);
+    const min = `${now.getMinutes()}`.padStart(2, 0);
 
     labelDate.textContent = `${day}/${month}/${year}, ${hour}: ${min}`;
 
@@ -385,52 +394,52 @@ btnSort.addEventListener('click', function (e) {
 // });
 
 //287,460,000,000
-const diameter = 287_460_000_000;
-//It is hard to read like this. There are too many 0s.
-//using _ makes it easier to see
-console.log(diameter);
+// const diameter = 287_460_000_000;
+// //It is hard to read like this. There are too many 0s.
+// //using _ makes it easier to see
+// console.log(diameter);
 
-const price = 345_99;
-console.log(price);
+// const price = 345_99;
+// console.log(price);
 
-const transferFee1 = 15_00;
-const transferFee2 = 1_500;
+// const transferFee1 = 15_00;
+// const transferFee2 = 1_500;
 
-const PI = 3.1415;
-console.log(PI);
+// const PI = 3.1415;
+// console.log(PI);
 
-console.log(parseInt('230_000'));
+// console.log(parseInt('230_000'));
 
-console.log(2 ** 53 - 1);
-console.log(Number.MAX_SAFE_INTEGER);
-console.log(2 ** 53 + 1);
-console.log(2 ** 53 + 2);
-console.log(2 ** 53 + 3);
-console.log(2 ** 53 + 4);
+// console.log(2 ** 53 - 1);
+// console.log(Number.MAX_SAFE_INTEGER);
+// console.log(2 ** 53 + 1);
+// console.log(2 ** 53 + 2);
+// console.log(2 ** 53 + 3);
+// console.log(2 ** 53 + 4);
 
-console.log(123124233241241242353523423432n);
-console.log(BigInt(12312423));
+// console.log(123124233241241242353523423432n);
+// console.log(BigInt(12312423));
 
-//Operations
-console.log(10000n + 10000n);
-console.log(123124239432049102931902309123012n * 100000000n);
-// console.log(Math.sqrt(16n));
+// //Operations
+// console.log(10000n + 10000n);
+// console.log(123124239432049102931902309123012n * 100000000n);
+// // console.log(Math.sqrt(16n));
 
-const huge = 1283129012490139210n;
-const num = 23;
-console.log(huge * BigInt(num));
+// const huge = 1283129012490139210n;
+// const num = 23;
+// console.log(huge * BigInt(num));
 
-//Exceptions
-console.log(20n > 15);
-console.log(20n === 20);
-console.log(typeof 20n);
-console.log(20n == '20');
+// //Exceptions
+// console.log(20n > 15);
+// console.log(20n === 20);
+// console.log(typeof 20n);
+// console.log(20n == '20');
 
-console.log(huge + 'is REALLY big!!!');
+// console.log(huge + 'is REALLY big!!!');
 
-//Divisions
-console.log(11n / 3n);
-console.log(10 / 3);
+// //Divisions
+// console.log(11n / 3n);
+// console.log(10 / 3);
 
 //Create a date
 // const now = new Date();
@@ -448,13 +457,24 @@ console.log(10 / 3);
 
 //working with dates
 
+// const future = new Date(2037, 10, 19, 15, 23);
+// console.log(future);
+// console.log(future.getFullYear);
+// console.log(future.getMonth());
+// console.log(future.getDate());
+// console.log(future.getDay());
+// console.log(future.getHours());
+// console.log(future.getMinutes());
+// console.log(future.getSeconds());
+// console.log(future.toISOString());
+
+
+
 const future = new Date(2037, 10, 19, 15, 23);
-console.log(future);
-console.log(future.getFullYear);
-console.log(future.getMonth());
-console.log(future.getDate());
-console.log(future.getDay());
-console.log(future.getHours());
-console.log(future.getMinutes());
-console.log(future.getSeconds());
-console.log(future.toISOString());
+
+console.log(+future);
+
+const calcDayPassed = (date1, date2) => Math.abs(date2 - date1) / (1000 * 60 * 60 * 24)
+
+const days1 = calcDayPassed(new Date(2037, 3, 4), new Date(2037, 3, 14))
+console.log(days1);
